@@ -1,13 +1,18 @@
 module OmniAuth
   module Strategies
     class PassaporteWeb < OmniAuth::Strategies::OAuth2
-      option :name, 'passaporte_web'
+      DEFAULT_SCOPE = 'public'
+
+      option :name, :passaporte_web
 
       # This is where you pass the options you would pass when
       # initializing your consumer from the OAuth gem.
       option :client_options, {
-        :site => "http://localhost:4000",
-        :authorize_path => "/oauth/authorize"
+        :site => 'https://app.passaporteweb.com.br',
+        :authorize_path => '/oauth/authorize',
+        :token_path => '/oauth/token',
+        :token_method => :post,
+        :raise_errors => true,
       }
 
       # These are called after authentication has succeeded. If
@@ -16,7 +21,7 @@ module OmniAuth
       # or as a URI parameter). This may not be possible with all
       # providers.
       uid do
-        raw_info["id"]
+        raw_info['id']
       end
 
       info do
@@ -33,7 +38,17 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get('/api/v1/me.json').parsed
+        # @raw_info ||= access_token.get('/api/v1/profile').parsed
+        {'id' => 42, 'name' => 'Quarenta e Dois', 'email' => 'qua@renta.dois'}
+      end
+
+      def request_phase
+        options[:authorize_params] = {
+          :client_id     => options['client_id'],
+          :response_type => 'code',
+          :scopes        => (options['scope'] || DEFAULT_SCOPE)
+        }
+        super
       end
     end
   end
