@@ -1,2 +1,3 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'omniauth/passaporte_web'
+require 'byebug'
+require 'omniauth-passaporte_web'
