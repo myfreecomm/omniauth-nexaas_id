@@ -21,7 +21,7 @@ module OmniAuth
         {
           :id => raw_info['id'],
           :name => raw_info['name'],
-          :email => raw_info['email'],
+          :email => raw_info['main_email'],
         }
       end
 
@@ -36,7 +36,8 @@ module OmniAuth
       #   {
       #     "id"=>"e9fa918b-a90e-49f3-86ec-e3ce92488a3e",
       #     "name"=>"John Doe",
-      #     "email"=>"john@doe.com",
+      #     "main_email"=>"john@doe.com",
+      #     "emails"=>[{"address"=>"john@doe.com", "confirmed"=>true}],
       #     "created_at"=>"2016-07-21T22:02:17Z",
       #     "updated_at"=>"2016-07-21T22:02:17Z",
       #     "_links"=>{
