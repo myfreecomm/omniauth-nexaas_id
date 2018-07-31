@@ -1,17 +1,12 @@
+require 'omniauth-oauth2'
+
 module OmniAuth
   module Strategies
     class PassaporteWeb < OmniAuth::Strategies::OAuth2
-      DEFAULT_SCOPE = 'public'
+      DEFAULT_SCOPE = 'profile'
 
       option :name, :passaporte_web
-
-      option :client_options, {
-        :site => 'https://app.passaporteweb.com.br',
-        :authorize_path => '/oauth/authorize',
-        :token_path => '/oauth/token',
-        :token_method => :post,
-        :raise_errors => true,
-      }
+      option :client_options, { site: 'https://v2.passaporteweb.com.br' }
 
       uid do
         raw_info['id']
@@ -19,9 +14,10 @@ module OmniAuth
 
       info do
         {
-          :id => raw_info['id'],
-          :name => raw_info['name'],
-          :email => raw_info['main_email'],
+          id: raw_info['id'],
+          name: raw_info['name'],
+          email: raw_info['main_email'],
+          picture_url: raw_info['picture']
         }
       end
 
@@ -51,11 +47,7 @@ module OmniAuth
       end
 
       def request_phase
-        options[:authorize_params] = {
-          :client_id => options['client_id'],
-          :response_type => 'code',
-          :scopes => (options['scope'] || DEFAULT_SCOPE)
-        }
+        options[:authorize_params][:scopes] = options['scope'] || DEFAULT_SCOPE
         super
       end
     end
