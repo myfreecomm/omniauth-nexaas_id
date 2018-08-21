@@ -1,8 +1,6 @@
 # Omniauth::PassaporteWeb
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/omniauth/passaporte_web`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+PassaporteWeb OAuth2 Strategy for OmniAuth.
 
 ## Installation
 
@@ -22,7 +20,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+`OmniAuth::Strategies::PassaporteWeb` is simply a Rack middleware. Read the OmniAuth docs for detailed information: https://github.com/omniauth/omniauth.
+
+Here's a quick example, adding the middleware to a Rails app in `config/initializers/omniauth.rb`:
+
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :passaporte_web, ENV['PASSAPORTE_WEB_ID'], ENV['PASSAPORTE_WEB_SECRET']
+end
+```
+
+You can optionally specify the URL as an option (useful in case you want to point to PassaporteWeb's staging environment):
+
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :passaporte_web, ENV['PASSAPORTE_WEB_ID'], ENV['PASSAPORTE_WEB_SECRET'], client_options: { site: ENV['PASSAPORTE_WEB_URL'] }
+end
+```
 
 ## Development
 
