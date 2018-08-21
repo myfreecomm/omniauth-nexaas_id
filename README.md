@@ -7,7 +7,7 @@ Nexaas ID OAuth2 Strategy for OmniAuth.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'omniauth-nexaas-id'
+gem 'omniauth-nexaas_id'
 ```
 
 And then execute:
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install omniauth-nexaas-id
+    $ gem install omniauth-nexaas_id
 
 ## Usage
 
@@ -46,7 +46,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/myfreecomm/omniauth-nexaas-id.
+Bug reports and pull requests are welcome on GitHub at https://github.com/myfreecomm/omniauth-nexaas_id.
 
 
 ## License
