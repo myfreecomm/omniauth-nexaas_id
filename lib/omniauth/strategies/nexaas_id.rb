@@ -1,5 +1,7 @@
 require 'omniauth-oauth2'
 
+OmniAuth.config.add_camelization('nexaas_id', 'NexaasID')
+
 module OmniAuth
   module Strategies
     class NexaasID < OmniAuth::Strategies::OAuth2
