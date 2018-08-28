@@ -1,12 +1,14 @@
 require 'omniauth-oauth2'
 
+OmniAuth.config.add_camelization('nexaas_id', 'NexaasID')
+
 module OmniAuth
   module Strategies
-    class PassaporteWeb < OmniAuth::Strategies::OAuth2
-      DEFAULT_SCOPE = 'profile'
+    class NexaasID < OmniAuth::Strategies::OAuth2
+      DEFAULT_SCOPE = 'profile invite'
 
-      option :name, :passaporte_web
-      option :client_options, { site: 'https://v2.passaporteweb.com.br' }
+      option :name, :nexaas_id
+      option :client_options, { site: 'https://id.nexaas.com' }
 
       uid do
         raw_info['id']
@@ -38,7 +40,7 @@ module OmniAuth
       #     "updated_at"=>"2016-07-21T22:02:17Z",
       #     "_links"=>{
       #       "self"=>{
-      #         "href"=>"https://app.passaporteweb.com.br/api/v1/users/e9fa918b-a90e-49f3-86ec-e3ce92488a3e"
+      #         "href"=>"https://id.nexaas.com/api/v1/users/e9fa918b-a90e-49f3-86ec-e3ce92488a3e"
       #       }
       #     }
       #   }

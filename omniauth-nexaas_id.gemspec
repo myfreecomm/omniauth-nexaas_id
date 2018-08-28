@@ -3,14 +3,14 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
-  spec.name          = "omniauth-passaporte_web"
+  spec.name          = "omniauth-nexaas_id"
   spec.version       = "0.1.0"
-  spec.authors       = ["Rodrigo Tassinari de Oliveira"]
-  spec.email         = ["rodrigo@pittlandia.net"]
+  spec.authors       = ["Rodrigo Tassinari de Oliveira", "Luiz Carlos Buiatte"]
+  spec.email         = ["rodrigo@pittlandia.net", "luiz.buiatte@nexaas.com"]
 
-  spec.summary       = %q{PassaporteWeb OAuth2 strategy for Omniauth.}
-  spec.description   = %q{PassaporteWeb OAuth2 strategy for Omniauth.}
-  spec.homepage      = "https://github.com/myfreecomm/omniauth-passaporte_web"
+  spec.summary       = %q{Nexaas ID OAuth2 strategy for Omniauth.}
+  spec.description   = %q{Nexaas ID OAuth2 strategy for Omniauth.}
+  spec.homepage      = "https://github.com/myfreecomm/omniauth-nexaas_id"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

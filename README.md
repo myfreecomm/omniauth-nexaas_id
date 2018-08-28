@@ -1,13 +1,13 @@
-# Omniauth::PassaporteWeb
+# Omniauth::NexaasID
 
-PassaporteWeb OAuth2 Strategy for OmniAuth.
+Nexaas ID OAuth2 Strategy for OmniAuth.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'omniauth-passaporte_web'
+gem 'omniauth-nexaas_id'
 ```
 
 And then execute:
@@ -16,25 +16,25 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install omniauth-passaporte_web
+    $ gem install omniauth-nexaas_id
 
 ## Usage
 
-`OmniAuth::Strategies::PassaporteWeb` is simply a Rack middleware. Read the OmniAuth docs for detailed information: https://github.com/omniauth/omniauth.
+`OmniAuth::Strategies::NexaasID` is simply a Rack middleware. Read the OmniAuth docs for detailed information: https://github.com/omniauth/omniauth.
 
 Here's a quick example, adding the middleware to a Rails app in `config/initializers/omniauth.rb`:
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :passaporte_web, ENV['PASSAPORTE_WEB_ID'], ENV['PASSAPORTE_WEB_SECRET']
+  provider :nexaas_id, ENV['NEXAAS_ID_TOKEN'], ENV['NEXAAS_ID_SECRET']
 end
 ```
 
-You can optionally specify the URL as an option (useful in case you want to point to PassaporteWeb's staging environment):
+You can optionally specify the URL as an option (useful in case you want to point to Nexaas ID's staging environment):
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :passaporte_web, ENV['PASSAPORTE_WEB_ID'], ENV['PASSAPORTE_WEB_SECRET'], client_options: { site: ENV['PASSAPORTE_WEB_URL'] }
+  provider :nexaas_id, ENV['NEXAAS_ID_TOKEN'], ENV['NEXAAS_ID_SECRET'], client_options: { site: ENV['NEXAAS_ID_URL'] }
 end
 ```
 
@@ -46,7 +46,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/myfreecomm/omniauth-passaporte_web.
+Bug reports and pull requests are welcome on GitHub at https://github.com/myfreecomm/omniauth-nexaas_id.
 
 
 ## License
