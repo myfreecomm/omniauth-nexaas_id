@@ -17,8 +17,12 @@ module OmniAuth
       info do
         {
           id: raw_info['id'],
-          name: raw_info['name'],
-          email: raw_info['main_email'],
+          name: {
+            first: raw_info['first_name'],
+            last: raw_info['last_name']
+          },
+          fullname: raw_info['full_name'],
+          email: raw_info['email'],
           picture_url: raw_info['picture']
         }
       end
@@ -33,8 +37,8 @@ module OmniAuth
       #
       #   {
       #     "id"=>"e9fa918b-a90e-49f3-86ec-e3ce92488a3e",
-      #     "name"=>"John Doe",
-      #     "main_email"=>"john@doe.com",
+      #     "full_name"=>"John Doe",
+      #     "email"=>"john@doe.com",
       #     "emails"=>[{"address"=>"john@doe.com", "confirmed"=>true}],
       #     "created_at"=>"2016-07-21T22:02:17Z",
       #     "updated_at"=>"2016-07-21T22:02:17Z",
