@@ -29,8 +29,10 @@ module OmniAuth
 
       extra do
         {
-          'raw_info'  => raw_info,
-          'api_token' => access_token.api_token
+          'raw_info' => raw_info,
+          'legacy'   => {
+            'api_token' => access_token.api_token
+          }
         }
       end
 
