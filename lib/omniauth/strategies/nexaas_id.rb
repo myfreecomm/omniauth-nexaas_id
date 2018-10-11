@@ -68,8 +68,10 @@ module OmniAuth
       protected
 
       def build_access_token
-        @api_token = request.params['api_token']
-        super
+        if (token = super).params.present?
+          @api_token = token.params['api_token']
+        end
+        token
       end
     end
   end
