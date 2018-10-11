@@ -7,6 +7,13 @@ module OmniAuth
     class NexaasID < OmniAuth::Strategies::OAuth2
       DEFAULT_SCOPE = 'profile invite'.freeze
 
+      attr_reader :api_token
+
+      def initialize(*args)
+        super
+        @api_token = nil
+      end
+
       option :name, :nexaas_id
       option :client_options, site: 'https://id.nexaas.com'
 
@@ -30,9 +37,7 @@ module OmniAuth
       extra do
         {
           raw_info: raw_info,
-          legacy: {
-            api_token: access_token.api_token
-          }
+          legacy: { api_token: api_token }
         }
       end
 
@@ -57,6 +62,13 @@ module OmniAuth
 
       def request_phase
         options[:authorize_params][:scopes] = options['scope'] || DEFAULT_SCOPE
+        super
+      end
+
+      protected
+
+      def build_access_token
+        @api_token = request.params['api_token']
         super
       end
     end
