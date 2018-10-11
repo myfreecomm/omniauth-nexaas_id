@@ -7,11 +7,9 @@ module OmniAuth
     class NexaasID < OmniAuth::Strategies::OAuth2
       DEFAULT_SCOPE = 'profile invite'.freeze
 
-      attr_reader :api_token
-
       def initialize(*args)
-        super
         @api_token = nil
+        super
       end
 
       option :name, :nexaas_id
@@ -37,7 +35,7 @@ module OmniAuth
       extra do
         {
           raw_info: raw_info,
-          legacy: { api_token: api_token }
+          legacy: { api_token: @api_token }
         }
       end
 
@@ -68,7 +66,7 @@ module OmniAuth
       protected
 
       def build_access_token
-        if (token = super).params.present?
+        if (token = super) && token.params
           @api_token = token.params['api_token']
         end
         token
