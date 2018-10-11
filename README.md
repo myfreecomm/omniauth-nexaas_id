@@ -9,6 +9,7 @@ You can get documentation from:
 - [Installation](https://github.com/myfreecomm/omniauth-nexaas_id/wiki)
 - [Development & Contributing](https://github.com/myfreecomm/omniauth-nexaas_id/wiki/Development-&-Contributing)
 - [Usage](https://github.com/myfreecomm/omniauth-nexaas_id/wiki/Usage)
+- [Example resource explained](https://github.com/myfreecomm/omniauth-nexaas_id/wiki/Returned-resource)
 
 ## License
 
