@@ -5,10 +5,15 @@ OmniAuth.config.add_camelization('nexaas_id', 'NexaasID')
 module OmniAuth
   module Strategies
     class NexaasID < OmniAuth::Strategies::OAuth2
-      DEFAULT_SCOPE = 'profile invite'
+      DEFAULT_SCOPE = 'profile invite'.freeze
+
+      def initialize(*args)
+        @api_token = nil
+        super
+      end
 
       option :name, :nexaas_id
-      option :client_options, { site: 'https://id.nexaas.com' }
+      option :client_options, site: 'https://id.nexaas.com'
 
       uid do
         raw_info['id']
@@ -29,7 +34,8 @@ module OmniAuth
 
       extra do
         {
-          'raw_info' => raw_info
+          raw_info: raw_info,
+          legacy: { api_token: @api_token }
         }
       end
 
@@ -55,6 +61,15 @@ module OmniAuth
       def request_phase
         options[:authorize_params][:scopes] = options['scope'] || DEFAULT_SCOPE
         super
+      end
+
+      protected
+
+      def build_access_token
+        if (token = super) && token.params
+          @api_token = token.params['api_token']
+        end
+        token
       end
     end
   end
