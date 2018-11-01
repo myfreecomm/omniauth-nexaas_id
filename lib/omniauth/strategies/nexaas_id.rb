@@ -72,7 +72,10 @@ module OmniAuth
       def retrieve_emails(id)
         return unless options[:list_emails] # guard: access endpoint only if allowed
         emails = access_token.get('/api/v1/profile/emails').parsed
-        emails['id'] == id ? emails['emails'] : nil
+        got = email['id']
+        raise "unexpected id #{got} retrieving e-mails for #{id}" unless got == id
+        emails['emails']
+
       rescue StandardError => err
         warn(err)
         nil
