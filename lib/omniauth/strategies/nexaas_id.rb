@@ -53,7 +53,7 @@ module OmniAuth
 
       def list_emails?
         options[:list_emails] || options['list_emails'] ||
-          options[:client_options][:list_emails]
+          options[:client_options][:list_emails] # TODO: remove this line
       end
 
       protected
