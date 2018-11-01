@@ -5,7 +5,9 @@ describe OmniAuth::Strategies::NexaasID do
     described_class.new(
       'app_id',
       'app_secret',
-      client_options: { site: 'https://sandbox.id.nexaas.com' })
+      client_options: { site: 'https://sandbox.id.nexaas.com' },
+      list_emails: true
+    )
   end
 
   it 'has a default scope' do
@@ -26,5 +28,9 @@ describe OmniAuth::Strategies::NexaasID do
 
   it 'has a site' do
     expect(subject.options[:client_options][:site]).to eq('https://sandbox.id.nexaas.com')
+  end
+
+  it 'must be true list_emails' do
+    expect(subject.options[:list_emails]).to be_truthy
   end
 end

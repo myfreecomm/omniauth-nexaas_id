@@ -14,6 +14,7 @@ module OmniAuth
 
       option :name, :nexaas_id
       option :client_options, site: 'https://id.nexaas.com'
+      option :list_emails, false
 
       uid do
         raw_info['id']
