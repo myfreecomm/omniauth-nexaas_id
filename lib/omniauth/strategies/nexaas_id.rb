@@ -29,6 +29,7 @@ module OmniAuth
           },
           fullname: raw_info['full_name'],
           email: raw_info['email'],
+          emails: raw_info['emails'],
           picture_url: raw_info['picture']
         }
       end
@@ -41,7 +42,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get('/api/v1/profile').parsed
+        @raw_info ||= build_raw_info
       end
 
       def request_phase
@@ -56,6 +57,24 @@ module OmniAuth
           @api_token = token.params['api_token']
         end
         token
+      end
+
+      def build_raw_info
+        add_email_list_to(access_token.get('/api/v1/profile').parsed)
+      end
+
+      def add_email_list_to(acc)
+        acc['emails'] = retrieve_emails(acc['id']) || [acc['email']]
+        acc
+      end
+
+      def retrieve_emails(id)
+        return unless options[:list_emails] # guard: access endpoint only if allowed
+        emails = access_token.get('/api/v1/profile/emails').parsed
+        emails['id'] == id ? emails['emails'] : nil
+      rescue StandardError => err
+        warn(err)
+        nil
       end
     end
   end
