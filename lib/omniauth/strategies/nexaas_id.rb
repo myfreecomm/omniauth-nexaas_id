@@ -21,6 +21,7 @@ module OmniAuth
       end
 
       info do
+        main_email = raw_info['email']
         {
           id: raw_info['id'],
           name: {
@@ -28,8 +29,8 @@ module OmniAuth
             last: raw_info['last_name']
           },
           fullname: raw_info['full_name'],
-          email: raw_info['email'],
-          emails: raw_info['emails'],
+          email: main_email,
+          emails: raw_info['emails'] || [main_email],
           picture_url: raw_info['picture']
         }
       end
@@ -64,7 +65,7 @@ module OmniAuth
       end
 
       def add_email_list_to(acc)
-        acc['emails'] = retrieve_emails(acc['id']) || [acc['email']]
+        acc['emails'] = retrieve_emails(acc['id'])
         acc
       end
 
