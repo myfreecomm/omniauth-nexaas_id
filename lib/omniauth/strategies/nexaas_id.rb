@@ -77,7 +77,7 @@ module OmniAuth
       def retrieve_emails(id)
         return unless list_emails? # guard: access endpoint only if allowed
         emails = access_token.get('/api/v1/profile/emails').parsed
-        got = email['id']
+        got = emails['id']
         raise "unexpected id #{got} retrieving e-mails for #{id}" unless got == id
         emails['emails']
 
