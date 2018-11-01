@@ -51,6 +51,11 @@ module OmniAuth
         super
       end
 
+      def list_emails?
+        options[:list_emails] || options['list_emails'] ||
+          options[:client_options][:list_emails]
+      end
+
       protected
 
       def build_access_token
@@ -70,7 +75,7 @@ module OmniAuth
       end
 
       def retrieve_emails(id)
-        return unless options[:list_emails] # guard: access endpoint only if allowed
+        return unless list_emails? # guard: access endpoint only if allowed
         emails = access_token.get('/api/v1/profile/emails').parsed
         got = email['id']
         raise "unexpected id #{got} retrieving e-mails for #{id}" unless got == id

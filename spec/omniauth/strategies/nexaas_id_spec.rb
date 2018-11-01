@@ -31,6 +31,6 @@ describe OmniAuth::Strategies::NexaasID do
   end
 
   it 'must be true list_emails' do
-    expect(subject.options[:list_emails]).to be_truthy
+    expect(subject.list_emails?).to be_truthy
   end
 end
