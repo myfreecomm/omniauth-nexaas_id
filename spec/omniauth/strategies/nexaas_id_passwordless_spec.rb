@@ -43,11 +43,26 @@ describe OmniAuth::Strategies::NexaasIDPasswordless do
     expect(subject.options[:client_options][:authorize_url]).to eq('oauth/passwordless/authorize')
   end
 
-  context '#authorize_params' do
+  describe '#authorize_params' do
     it 'returns state and passwordless_token' do
       expect(subject.authorize_params[:state]).to be_an_instance_of(String)
       expect(subject.authorize_params[:state]).to_not be_empty
       expect(subject.authorize_params[:passwordless_token]).to eq('token-123')
+    end
+  end
+
+  describe '#request_phase' do
+    before do
+      expect_any_instance_of(OmniAuth::Strategies::OAuth2).to receive(:callback_url).and_return('callback_url')
+    end
+
+    it 'redirect to oauth/passwordless/authorize' do
+      code, env = subject.request_phase
+
+      expect(code).to eq(302)
+      expect(env['Location']).to match(
+        %r{sandbox.id.nexaas.com/oauth/passwordless/authorize\?client_id=app_secret&passwordless_token=token-123&redirect_uri=callback_url}
+      )
     end
   end
 end
