@@ -42,4 +42,12 @@ describe OmniAuth::Strategies::NexaasIDPasswordless do
   it 'has a authorize_url default' do
     expect(subject.options[:client_options][:authorize_url]).to eq('oauth/passwordless/authorize')
   end
+
+  context '#authorize_params' do
+    it 'returns state and passwordless_token' do
+      expect(subject.authorize_params[:state]).to be_an_instance_of(String)
+      expect(subject.authorize_params[:state]).to_not be_empty
+      expect(subject.authorize_params[:passwordless_token]).to eq('token-123')
+    end
+  end
 end

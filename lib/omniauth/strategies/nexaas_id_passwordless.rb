@@ -57,6 +57,11 @@ module OmniAuth
           options[:client_options][:list_emails] # TODO: remove this line
       end
 
+      def authorize_params
+        options.authorize_params[:passwordless_token] = options[:client_options][:passwordless_token]
+        super
+      end
+
       protected
 
       def build_access_token
