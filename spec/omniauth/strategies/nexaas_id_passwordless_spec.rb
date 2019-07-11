@@ -3,6 +3,7 @@ require 'spec_helper'
 describe OmniAuth::Strategies::NexaasIDPasswordless do
   subject do
     described_class.new(
+      'app',
       'app_id',
       'app_secret',
       client_options: { site: 'https://sandbox.id.nexaas.com',
@@ -20,7 +21,7 @@ describe OmniAuth::Strategies::NexaasIDPasswordless do
   end
 
   it 'has app' do
-    expect(subject.app).to eq('app_id')
+    expect(subject.app).to eq('app')
   end
 
   it 'has a name' do
@@ -61,7 +62,7 @@ describe OmniAuth::Strategies::NexaasIDPasswordless do
 
       expect(code).to eq(302)
       expect(env['Location']).to match(
-        %r{sandbox.id.nexaas.com/oauth/passwordless/authorize\?client_id=app_secret&passwordless_token=token-123&redirect_uri=callback_url}
+        %r{sandbox.id.nexaas.com/oauth/passwordless/authorize\?client_id=app_id&passwordless_token=token-123&redirect_uri=callback_url}
       )
     end
   end
