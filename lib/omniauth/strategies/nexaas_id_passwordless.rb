@@ -7,9 +7,6 @@ OmniAuth.config.add_camelization('nexaas_id_passwordless', 'NexaasIDPasswordless
 module OmniAuth
   module Strategies
     class NexaasIDPasswordless < OmniAuth::Strategies::NexaasID
-      def initialize(*args)
-        super
-      end
 
       option :name, :nexaas_id_passwordless
       option :client_options, site: 'https://id.nexaas.com',
