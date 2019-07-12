@@ -16,8 +16,8 @@ describe OmniAuth::Strategies::NexaasIDPasswordless do
     expect(described_class::DEFAULT_SCOPE).to eq('profile invite')
   end
 
-  it 'us a subclass of OmniAuth::Strategies::OAuth2' do
-    expect(described_class.superclass).to eq(OmniAuth::Strategies::OAuth2)
+  it 'us a subclass of OmniAuth::Strategies::NexaasID' do
+    expect(described_class.superclass).to eq(OmniAuth::Strategies::NexaasID)
   end
 
   it 'has app' do
@@ -41,7 +41,7 @@ describe OmniAuth::Strategies::NexaasIDPasswordless do
   end
 
   it 'has a authorize_url default' do
-    expect(subject.options[:client_options][:authorize_url]).to eq('oauth/passwordless/authorize')
+    expect(subject.options[:client_options][:authorize_url]).to eq('/oauth/passwordless/authorize')
   end
 
   describe '#authorize_params' do
