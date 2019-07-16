@@ -16,6 +16,7 @@ module OmniAuth
 
       def callback_url
         uri = URI.parse(super)
+        return uri.to_s if uri.query.nil?
         new_query = URI.decode_www_form(uri.query).reject { |query| query[0] == 'passwordless_token' }
         uri.query = new_query.empty? ? nil : URI.encode_www_form(new_query)
         uri.to_s

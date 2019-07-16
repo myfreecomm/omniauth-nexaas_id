@@ -54,10 +54,8 @@ describe OmniAuth::Strategies::NexaasIDPasswordless do
 
   describe '#request_phase' do
     before do
-      allow_any_instance_of(OmniAuth::Strategies::OAuth2).to receive(:full_host).and_return('http://example.com')
-      allow_any_instance_of(OmniAuth::Strategies::OAuth2).to receive(:script_name).and_return('')
-      allow_any_instance_of(OmniAuth::Strategies::OAuth2).to receive(:callback_path).and_return('/auth/passwordless_token/callback')
-      allow_any_instance_of(OmniAuth::Strategies::OAuth2).to receive(:query_string).and_return('?passwordless_token=token-123')
+      expect_any_instance_of(OmniAuth::Strategies::OAuth2).to receive(:callback_url)
+        .and_return('http://example.com/auth/passwordless_token/callback?passwordless_token=token-123')
     end
 
     it 'redirect to oauth/passwordless/authorize' do
@@ -74,7 +72,7 @@ describe OmniAuth::Strategies::NexaasIDPasswordless do
       queries = URI.parse(env['Location']).query
       redirect_uri = URI.decode_www_form(queries).select { |query| query[0] == 'redirect_uri'}.flatten
 
-      expect(redirect_uri[1]).to match('http://example.com/auth/passwordless_token/callback')
+      expect(redirect_uri[1]).to eql('http://example.com/auth/passwordless_token/callback')
     end
   end
 end
