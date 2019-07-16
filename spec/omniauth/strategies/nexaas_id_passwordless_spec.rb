@@ -16,7 +16,7 @@ describe OmniAuth::Strategies::NexaasIDPasswordless do
     expect(described_class::DEFAULT_SCOPE).to eq('profile invite')
   end
 
-  it 'us a subclass of OmniAuth::Strategies::NexaasID' do
+  it 'is a subclass of OmniAuth::Strategies::NexaasID' do
     expect(described_class.superclass).to eq(OmniAuth::Strategies::NexaasID)
   end
 
