@@ -12,11 +12,6 @@ module OmniAuth
       option :client_options, site: 'https://id.nexaas.com',
                               authorize_url: '/oauth/passwordless/authorize'
 
-      def authorize_params
-        options.authorize_params[:passwordless_token] = options[:client_options][:passwordless_token]
-        super
-      end
-
       private
 
       def callback_url

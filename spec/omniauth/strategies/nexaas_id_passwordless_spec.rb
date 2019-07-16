@@ -6,8 +6,8 @@ describe OmniAuth::Strategies::NexaasIDPasswordless do
       'app',
       'app_id',
       'app_secret',
-      client_options: { site: 'https://sandbox.id.nexaas.com',
-                        passwordless_token: 'token-123' },
+      client_options: { site: 'https://sandbox.id.nexaas.com' },
+      authorize_params: { passwordless_token: 'token-123' },
       list_emails: true
     )
   end
@@ -37,7 +37,7 @@ describe OmniAuth::Strategies::NexaasIDPasswordless do
   end
 
   it 'has a passwordless_token' do
-    expect(subject.options[:client_options][:passwordless_token]).to eq('token-123')
+    expect(subject.options[:authorize_params][:passwordless_token]).to eq('token-123')
   end
 
   it 'has a authorize_url default' do
