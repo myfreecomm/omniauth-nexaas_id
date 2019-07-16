@@ -16,6 +16,15 @@ module OmniAuth
         options.authorize_params[:passwordless_token] = options[:client_options][:passwordless_token]
         super
       end
+
+      private
+
+      def callback_url
+        uri = URI.parse(super)
+        new_query = URI.decode_www_form(uri.query).reject { |query| query[0] == 'passwordless_token' }
+        uri.query = new_query.empty? ? nil : URI.encode_www_form(new_query)
+        uri.to_s
+      end
     end
   end
 end
