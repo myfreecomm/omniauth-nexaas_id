@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "omniauth-nexaas_id"
-  spec.version       = "0.2.2"
+  spec.version       = "1.0.0"
   spec.authors       = ["Rodrigo Tassinari de Oliveira", "Luiz Carlos Buiatte"]
   spec.email         = ["rodrigo@pittlandia.net", "luiz.buiatte@nexaas.com"]
 
