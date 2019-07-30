@@ -3,6 +3,7 @@ require 'spec_helper'
 describe OmniAuth::Strategies::NexaasID do
   subject do
     described_class.new(
+      'app',
       'app_id',
       'app_secret',
       client_options: { site: 'https://sandbox.id.nexaas.com' },
@@ -19,7 +20,7 @@ describe OmniAuth::Strategies::NexaasID do
   end
 
   it 'has app' do
-    expect(subject.app).to eq('app_id')
+    expect(subject.app).to eq('app')
   end
 
   it 'has a name' do
